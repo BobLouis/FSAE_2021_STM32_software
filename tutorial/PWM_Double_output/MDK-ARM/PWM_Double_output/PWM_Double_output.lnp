@@ -1,0 +1,27 @@
+--cpu=Cortex-M4.fp.sp
+"pwm_double_output\startup_stm32f407xx.o"
+"pwm_double_output\main.o"
+"pwm_double_output\gpio.o"
+"pwm_double_output\tim.o"
+"pwm_double_output\stm32f4xx_it.o"
+"pwm_double_output\stm32f4xx_hal_msp.o"
+"pwm_double_output\stm32f4xx_hal_tim.o"
+"pwm_double_output\stm32f4xx_hal_tim_ex.o"
+"pwm_double_output\stm32f4xx_hal_rcc.o"
+"pwm_double_output\stm32f4xx_hal_rcc_ex.o"
+"pwm_double_output\stm32f4xx_hal_flash.o"
+"pwm_double_output\stm32f4xx_hal_flash_ex.o"
+"pwm_double_output\stm32f4xx_hal_flash_ramfunc.o"
+"pwm_double_output\stm32f4xx_hal_gpio.o"
+"pwm_double_output\stm32f4xx_hal_dma_ex.o"
+"pwm_double_output\stm32f4xx_hal_dma.o"
+"pwm_double_output\stm32f4xx_hal_pwr.o"
+"pwm_double_output\stm32f4xx_hal_pwr_ex.o"
+"pwm_double_output\stm32f4xx_hal_cortex.o"
+"pwm_double_output\stm32f4xx_hal.o"
+"pwm_double_output\stm32f4xx_hal_exti.o"
+"pwm_double_output\system_stm32f4xx.o"
+--library_type=microlib --strict --scatter "PWM_Double_output\PWM_Double_output.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "PWM_Double_output.map" -o PWM_Double_output\PWM_Double_output.axf

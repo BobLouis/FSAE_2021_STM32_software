@@ -1,0 +1,26 @@
+--cpu=Cortex-M4.fp.sp
+"led_gpio_output\startup_stm32f407xx.o"
+"led_gpio_output\main.o"
+"led_gpio_output\gpio.o"
+"led_gpio_output\stm32f4xx_it.o"
+"led_gpio_output\stm32f4xx_hal_msp.o"
+"led_gpio_output\stm32f4xx_hal_tim.o"
+"led_gpio_output\stm32f4xx_hal_tim_ex.o"
+"led_gpio_output\stm32f4xx_hal_rcc.o"
+"led_gpio_output\stm32f4xx_hal_rcc_ex.o"
+"led_gpio_output\stm32f4xx_hal_flash.o"
+"led_gpio_output\stm32f4xx_hal_flash_ex.o"
+"led_gpio_output\stm32f4xx_hal_flash_ramfunc.o"
+"led_gpio_output\stm32f4xx_hal_gpio.o"
+"led_gpio_output\stm32f4xx_hal_dma_ex.o"
+"led_gpio_output\stm32f4xx_hal_dma.o"
+"led_gpio_output\stm32f4xx_hal_pwr.o"
+"led_gpio_output\stm32f4xx_hal_pwr_ex.o"
+"led_gpio_output\stm32f4xx_hal_cortex.o"
+"led_gpio_output\stm32f4xx_hal.o"
+"led_gpio_output\stm32f4xx_hal_exti.o"
+"led_gpio_output\system_stm32f4xx.o"
+--library_type=microlib --strict --scatter "LED_GPIO_OUTPUT\LED_GPIO_OUTPUT.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "LED_GPIO_OUTPUT.map" -o LED_GPIO_OUTPUT\LED_GPIO_OUTPUT.axf

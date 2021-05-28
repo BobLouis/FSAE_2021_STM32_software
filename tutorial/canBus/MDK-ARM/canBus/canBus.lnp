@@ -1,0 +1,28 @@
+--cpu=Cortex-M4.fp.sp
+"canbus\startup_stm32f407xx.o"
+"canbus\main.o"
+"canbus\gpio.o"
+"canbus\can.o"
+"canbus\stm32f4xx_it.o"
+"canbus\stm32f4xx_hal_msp.o"
+"canbus\stm32f4xx_hal_can.o"
+"canbus\stm32f4xx_hal_rcc.o"
+"canbus\stm32f4xx_hal_rcc_ex.o"
+"canbus\stm32f4xx_hal_flash.o"
+"canbus\stm32f4xx_hal_flash_ex.o"
+"canbus\stm32f4xx_hal_flash_ramfunc.o"
+"canbus\stm32f4xx_hal_gpio.o"
+"canbus\stm32f4xx_hal_dma_ex.o"
+"canbus\stm32f4xx_hal_dma.o"
+"canbus\stm32f4xx_hal_pwr.o"
+"canbus\stm32f4xx_hal_pwr_ex.o"
+"canbus\stm32f4xx_hal_cortex.o"
+"canbus\stm32f4xx_hal.o"
+"canbus\stm32f4xx_hal_exti.o"
+"canbus\stm32f4xx_hal_tim.o"
+"canbus\stm32f4xx_hal_tim_ex.o"
+"canbus\system_stm32f4xx.o"
+--library_type=microlib --strict --scatter "canBus\canBus.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "canBus.map" -o canBus\canBus.axf
