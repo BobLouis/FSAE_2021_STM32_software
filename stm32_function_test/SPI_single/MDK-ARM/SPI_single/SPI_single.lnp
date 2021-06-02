@@ -1,0 +1,28 @@
+--cpu=Cortex-M4.fp.sp
+"spi_single\startup_stm32f407xx.o"
+"spi_single\main.o"
+"spi_single\gpio.o"
+"spi_single\spi.o"
+"spi_single\stm32f4xx_it.o"
+"spi_single\stm32f4xx_hal_msp.o"
+"spi_single\stm32f4xx_hal_spi.o"
+"spi_single\stm32f4xx_hal_rcc.o"
+"spi_single\stm32f4xx_hal_rcc_ex.o"
+"spi_single\stm32f4xx_hal_flash.o"
+"spi_single\stm32f4xx_hal_flash_ex.o"
+"spi_single\stm32f4xx_hal_flash_ramfunc.o"
+"spi_single\stm32f4xx_hal_gpio.o"
+"spi_single\stm32f4xx_hal_dma_ex.o"
+"spi_single\stm32f4xx_hal_dma.o"
+"spi_single\stm32f4xx_hal_pwr.o"
+"spi_single\stm32f4xx_hal_pwr_ex.o"
+"spi_single\stm32f4xx_hal_cortex.o"
+"spi_single\stm32f4xx_hal.o"
+"spi_single\stm32f4xx_hal_exti.o"
+"spi_single\stm32f4xx_hal_tim.o"
+"spi_single\stm32f4xx_hal_tim_ex.o"
+"spi_single\system_stm32f4xx.o"
+--library_type=microlib --strict --scatter "SPI_single\SPI_single.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "SPI_single.map" -o SPI_single\SPI_single.axf
