@@ -1,0 +1,27 @@
+--cpu=Cortex-M4.fp.sp
+"buzzer_tim1_ch1\startup_stm32f407xx.o"
+"buzzer_tim1_ch1\main.o"
+"buzzer_tim1_ch1\gpio.o"
+"buzzer_tim1_ch1\tim.o"
+"buzzer_tim1_ch1\stm32f4xx_it.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_msp.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_tim.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_tim_ex.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_rcc.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_rcc_ex.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_flash.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_flash_ex.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_flash_ramfunc.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_gpio.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_dma_ex.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_dma.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_pwr.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_pwr_ex.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_cortex.o"
+"buzzer_tim1_ch1\stm32f4xx_hal.o"
+"buzzer_tim1_ch1\stm32f4xx_hal_exti.o"
+"buzzer_tim1_ch1\system_stm32f4xx.o"
+--library_type=microlib --strict --scatter "buzzer_TIM1_CH1\buzzer_TIM1_CH1.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "buzzer_TIM1_CH1.map" -o buzzer_TIM1_CH1\buzzer_TIM1_CH1.axf
