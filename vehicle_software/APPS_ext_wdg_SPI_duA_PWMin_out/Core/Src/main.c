@@ -62,7 +62,7 @@
 #define APPSROFFSET 0
 #define APPSLOFFSET 0
 
-#define ReadyTime 2000   //ms
+#define ReadyTime 1000   //ms
 
 //dma scan
 #define APPSR adcArr[0]
