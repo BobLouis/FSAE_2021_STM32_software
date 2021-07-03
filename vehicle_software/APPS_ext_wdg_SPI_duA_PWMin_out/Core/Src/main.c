@@ -96,6 +96,7 @@ static CAN_RxHeaderTypeDef RxMessage;
 //Rx Txdata
 uint8_t TxData_R[8]={0};
 uint8_t TxData_L[8]={0};
+
 uint32_t TxMailbox;
 uint8_t RxData[8]={0};
 
@@ -121,6 +122,7 @@ bool rtd_start=0; //if precharge&&reset&&readyToDrive io are all on this paramet
 //bool ready_io=0;
 bool precharge_io=0;
 bool reset_io=0;
+bool direction=0;
 
 //SPI variable
 uint8_t data_rec[6];
@@ -284,6 +286,7 @@ int main(void)
 	HAL_TIM_IC_Start_IT(&htim4, TIM_CHANNEL_4);
 	
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -499,7 +502,7 @@ void CAN_Txsetup(){
 		TxData_R[1]=0;
 		TxData_R[2]=0;
 		TxData_R[3]=0;
-		TxData_R[4]=0;
+		TxData_R[4]=direction;
 		TxData_R[5]=0;
 		TxData_R[6]=0;
 		TxData_R[7]=0;
@@ -509,7 +512,7 @@ void CAN_Txsetup(){
 		TxData_L[1]=0;
 		TxData_L[2]=0;
 		TxData_L[3]=0;
-		TxData_L[4]=0;
+		TxData_L[4]=!direction;
 		TxData_L[5]=0;
 		TxData_L[6]=0;
 		TxData_L[7]=0;
@@ -640,12 +643,10 @@ void torque_to_can(void){
 	}else{
 		TxData_R[0]=(torque_right%256);
 		TxData_R[1]=(torque_right/256);
-		TxData_R[4]=1;
 		TxData_R[5]=1;
 		
 		TxData_L[0]=(torque_left%256);
 		TxData_L[1]=(torque_left/256);
-		TxData_L[4]=1;
 		TxData_L[5]=1;
 	}
 	
