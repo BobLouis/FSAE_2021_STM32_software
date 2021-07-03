@@ -53,7 +53,8 @@ static CAN_RxHeaderTypeDef RxMessage;
 uint8_t TxData[8]={0};
 uint32_t TxMailbox;
 uint8_t RxData[8]={0};
-
+uint8_t RxData_R[8]={0};
+uint8_t RxData_L[8]={0};
 
 //address
 uint16_t OwnID=0x123;
@@ -219,6 +220,17 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
 		Error_Handler();
 	}
 	Received_ID=RxMessage.StdId;
+	if(Received_ID == 0xC0){
+		for(int i=0;i<8;++i){
+			RxData_R[i]=RxData[i];
+		}
+	}
+	
+	if(Received_ID == 0xF0){
+		for(int i=0;i<8;++i){
+			RxData_L[i]=RxData[i];
+		}
+	}
 	HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_1);
 }
 /* USER CODE END 4 */
