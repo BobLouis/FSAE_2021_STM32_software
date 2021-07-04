@@ -26,6 +26,7 @@ extern bool rtd_io;
 extern  bool precharge_io;
 extern bool reset_io;
 extern bool rtd_start;
+extern bool clear_fault_io;
 /* USER CODE END 0 */
 
 /*----------------------------------------------------------------------------*/
@@ -64,8 +65,8 @@ void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(CS1_GPIO_Port, CS1_Pin, GPIO_PIN_SET);
 
-  /*Configure GPIO pins : PEPin PEPin */
-  GPIO_InitStruct.Pin = readyToDrive_SW_Pin|reset_SW_Pin;
+  /*Configure GPIO pins : PEPin PEPin PEPin */
+  GPIO_InitStruct.Pin = readyToDrive_SW_Pin|reset_SW_Pin|clear_fault_SW_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
@@ -108,13 +109,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
            the HAL_GPIO_EXTI_Callback could be implemented in the user file
    */
 	if (GPIO_Pin==readyToDrive_SW_Pin){
-		
+		//ready to drive trigger
 		if((HAL_GPIO_ReadPin(readyToDrive_SW_GPIO_Port,readyToDrive_SW_Pin)==GPIO_PIN_RESET)&&reset_io==1&&precharge_io==1){
 			rtd_start=1;
 		}else{
 			rtd_start=0;
 		}
 	}else if(GPIO_Pin==reset_SW_Pin){
+		//reset pin trigger
 		if(HAL_GPIO_ReadPin(reset_SW_GPIO_Port,reset_SW_Pin)==GPIO_PIN_RESET){
 			reset_io=1;
 		}else{
@@ -124,6 +126,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			HAL_GPIO_WritePin(readyToDrive_LED_GPIO_Port,readyToDrive_LED_Pin,GPIO_PIN_RESET);
 		}
 	}else if(GPIO_Pin==precharge_SW_Pin){
+		//precharge pin trigger
 		if(HAL_GPIO_ReadPin(precharge_SW_GPIO_Port,precharge_SW_Pin)==GPIO_PIN_SET){
 			precharge_io=1;
 			HAL_GPIO_WritePin(precharge_LED_GPIO_Port,precharge_LED_Pin,GPIO_PIN_SET);
@@ -134,7 +137,14 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			HAL_GPIO_WritePin(readyToDrive_LED_GPIO_Port,readyToDrive_LED_Pin,GPIO_PIN_RESET);
 			HAL_GPIO_WritePin(precharge_LED_GPIO_Port,precharge_LED_Pin,GPIO_PIN_RESET);
 		}
-	}
+	}else if(GPIO_Pin==clear_fault_SW_Pin){
+		//inverter clear fault PIN
+		if(HAL_GPIO_ReadPin(clear_fault_SW_GPIO_Port,clear_fault_SW_Pin)==GPIO_PIN_RESET){
+			clear_fault_io=1;
+		}else{
+			}
+			
+		}
 }
 /* USER CODE END 2 */
 

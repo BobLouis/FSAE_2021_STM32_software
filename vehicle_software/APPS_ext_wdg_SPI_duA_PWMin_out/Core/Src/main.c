@@ -91,12 +91,14 @@
 uint16_t adcArr[5];
 static CAN_TxHeaderTypeDef TxMessage_right;
 static CAN_TxHeaderTypeDef TxMessage_left;
+static CAN_TxHeaderTypeDef TxMessage_R_clear;
+static CAN_TxHeaderTypeDef TxMessage_L_clear;
 static CAN_RxHeaderTypeDef RxMessage;
 
 //Rx Txdata
 uint8_t TxData_R[8]={0};
 uint8_t TxData_L[8]={0};
-
+uint8_t TxData_clear[8]={0};
 uint32_t TxMailbox;
 uint8_t RxData[8]={0};
 
@@ -122,6 +124,7 @@ bool rtd_start=0; //if precharge&&reset&&readyToDrive io are all on this paramet
 //bool ready_io=0;
 bool precharge_io=0;
 bool reset_io=0;
+bool clear_fault_io=0;
 bool direction=0;
 
 //SPI variable
@@ -287,6 +290,7 @@ int main(void)
 	
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
 	
+	
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -444,7 +448,11 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	zg = z * 0.0078;
 	
 	
-	//torque_command();
+	if(clear_fault_io){
+		HAL_CAN_AddTxMessage(&hcan1,&TxMessage_R_clear,TxData_clear,&TxMailbox);
+		HAL_CAN_AddTxMessage(&hcan1,&TxMessage_L_clear,TxData_clear,&TxMailbox);
+		clear_fault_io=0;
+	}
 	torque_to_can();
 	HAL_CAN_AddTxMessage(&hcan1,&TxMessage_right,TxData_R,&TxMailbox);
 	HAL_CAN_AddTxMessage(&hcan1,&TxMessage_left ,TxData_L,&TxMailbox);
@@ -516,6 +524,31 @@ void CAN_Txsetup(){
 		TxData_L[5]=0;
 		TxData_L[6]=0;
 		TxData_L[7]=0;
+		
+		TxMessage_R_clear.StdId=0x0C1;
+		TxMessage_R_clear.ExtId=0x01;
+		TxMessage_R_clear.RTR=CAN_RTR_DATA;
+		TxMessage_R_clear.IDE=CAN_ID_STD;
+		TxMessage_R_clear.DLC=8;
+		TxMessage_R_clear.TransmitGlobalTime=DISABLE; 
+		
+		TxMessage_L_clear.StdId=0x0F1;
+		TxMessage_L_clear.ExtId=0x01;
+		TxMessage_L_clear.RTR=CAN_RTR_DATA;
+		TxMessage_L_clear.IDE=CAN_ID_STD;
+		TxMessage_L_clear.DLC=8;
+		TxMessage_L_clear.TransmitGlobalTime=DISABLE;   
+		
+		
+		TxData_clear[0]=0;
+		TxData_clear[1]=0;
+		TxData_clear[2]=1;
+		TxData_clear[3]=0;
+		TxData_clear[4]=0;
+		TxData_clear[5]=0;
+		TxData_clear[6]=0;
+		TxData_clear[7]=0;
+		
 }
 
 void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
