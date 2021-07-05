@@ -151,8 +151,6 @@ Section Cross References
     gpio.o(i.MX_GPIO_Init) refers to memseta.o(.text) for __aeabi_memclr4
     gpio.o(i.MX_GPIO_Init) refers to stm32f4xx_hal_gpio.o(i.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
     gpio.o(i.MX_GPIO_Init) refers to stm32f4xx_hal_gpio.o(i.HAL_GPIO_Init) for HAL_GPIO_Init
-    gpio.o(i.MX_GPIO_Init) refers to stm32f4xx_hal_cortex.o(i.HAL_NVIC_SetPriority) for HAL_NVIC_SetPriority
-    gpio.o(i.MX_GPIO_Init) refers to stm32f4xx_hal_cortex.o(i.HAL_NVIC_EnableIRQ) for HAL_NVIC_EnableIRQ
     adc.o(i.HAL_ADC_MspDeInit) refers to stm32f4xx_hal_gpio.o(i.HAL_GPIO_DeInit) for HAL_GPIO_DeInit
     adc.o(i.HAL_ADC_MspDeInit) refers to stm32f4xx_hal_dma.o(i.HAL_DMA_DeInit) for HAL_DMA_DeInit
     adc.o(i.HAL_ADC_MspInit) refers to memseta.o(.text) for __aeabi_memclr4
@@ -1423,9 +1421,9 @@ Image Symbol Table
     i.MX_CAN1_Init                           0x08003728   Section        0  can.o(i.MX_CAN1_Init)
     i.MX_DMA_Init                            0x0800376c   Section        0  dma.o(i.MX_DMA_Init)
     i.MX_GPIO_Init                           0x08003788   Section        0  gpio.o(i.MX_GPIO_Init)
-    i.MX_IWDG_Init                           0x080038ac   Section        0  iwdg.o(i.MX_IWDG_Init)
-    i.MX_NVIC_Init                           0x080038d8   Section        0  main.o(i.MX_NVIC_Init)
-    MX_NVIC_Init                             0x080038d9   Thumb Code   102  main.o(i.MX_NVIC_Init)
+    i.MX_IWDG_Init                           0x0800389c   Section        0  iwdg.o(i.MX_IWDG_Init)
+    i.MX_NVIC_Init                           0x080038c8   Section        0  main.o(i.MX_NVIC_Init)
+    MX_NVIC_Init                             0x080038c9   Thumb Code   118  main.o(i.MX_NVIC_Init)
     i.MX_SPI2_Init                           0x08003940   Section        0  spi.o(i.MX_SPI2_Init)
     i.MX_TIM1_Init                           0x08003988   Section        0  tim.o(i.MX_TIM1_Init)
     i.MX_TIM2_Init                           0x08003a50   Section        0  tim.o(i.MX_TIM2_Init)
@@ -1736,8 +1734,8 @@ Image Symbol Table
     MX_ADC1_Init                             0x08003671   Thumb Code   172  adc.o(i.MX_ADC1_Init)
     MX_CAN1_Init                             0x08003729   Thumb Code    60  can.o(i.MX_CAN1_Init)
     MX_DMA_Init                              0x0800376d   Thumb Code    22  dma.o(i.MX_DMA_Init)
-    MX_GPIO_Init                             0x08003789   Thumb Code   270  gpio.o(i.MX_GPIO_Init)
-    MX_IWDG_Init                             0x080038ad   Thumb Code    36  iwdg.o(i.MX_IWDG_Init)
+    MX_GPIO_Init                             0x08003789   Thumb Code   254  gpio.o(i.MX_GPIO_Init)
+    MX_IWDG_Init                             0x0800389d   Thumb Code    36  iwdg.o(i.MX_IWDG_Init)
     MX_SPI2_Init                             0x08003941   Thumb Code    64  spi.o(i.MX_SPI2_Init)
     MX_TIM1_Init                             0x08003989   Thumb Code   192  tim.o(i.MX_TIM1_Init)
     MX_TIM2_Init                             0x08003a51   Thumb Code    98  tim.o(i.MX_TIM2_Init)
@@ -2012,9 +2010,9 @@ Memory Map of the image
     0x08003670   0x08003670   0x000000b8   Code   RO          379    i.MX_ADC1_Init      adc.o
     0x08003728   0x08003728   0x00000044   Code   RO          421    i.MX_CAN1_Init      can.o
     0x0800376c   0x0800376c   0x0000001c   Code   RO          461    i.MX_DMA_Init       dma.o
-    0x08003788   0x08003788   0x00000124   Code   RO          347    i.MX_GPIO_Init      gpio.o
-    0x080038ac   0x080038ac   0x0000002c   Code   RO          485    i.MX_IWDG_Init      iwdg.o
-    0x080038d8   0x080038d8   0x00000066   Code   RO           19    i.MX_NVIC_Init      main.o
+    0x08003788   0x08003788   0x00000114   Code   RO          347    i.MX_GPIO_Init      gpio.o
+    0x0800389c   0x0800389c   0x0000002c   Code   RO          485    i.MX_IWDG_Init      iwdg.o
+    0x080038c8   0x080038c8   0x00000076   Code   RO           19    i.MX_NVIC_Init      main.o
     0x0800393e   0x0800393e   0x00000002   PAD
     0x08003940   0x08003940   0x00000048   Code   RO          517    i.MX_SPI2_Init      spi.o
     0x08003988   0x08003988   0x000000c8   Code   RO          560    i.MX_TIM1_Init      tim.o
@@ -2112,9 +2110,9 @@ Image component sizes
        368         36          0          0        168       2139   adc.o
        172         22          0          0         40       1925   can.o
         28          6          0          0          0        874   dma.o
-       500         54          0          0          0       2296   gpio.o
+       484         54          0          0          0       2288   gpio.o
         44          8          0          0         12        843   iwdg.o
-      3130        396          0        248        136     733080   main.o
+      3146        396          0        248        136     733088   main.o
        216         24          0          0         88       1981   spi.o
         36          8        392          0       1024        896   startup_stm32f407xx.o
        180         28          0         12          0       9881   stm32f4xx_hal.o

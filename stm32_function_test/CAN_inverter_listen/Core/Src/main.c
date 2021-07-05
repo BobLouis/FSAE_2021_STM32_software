@@ -60,6 +60,7 @@ uint8_t RxData_L[8]={0};
 uint16_t OwnID=0x123;
 uint16_t RemoteID =0x0A0;
 uint16_t Received_ID;
+uint16_t clear_ID;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -230,6 +231,9 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan){
 		for(int i=0;i<8;++i){
 			RxData_L[i]=RxData[i];
 		}
+	}
+	if(Received_ID!=0xC0&&Received_ID!=0xF0){
+		clear_ID=Received_ID;
 	}
 	HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_1);
 }

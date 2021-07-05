@@ -310,7 +310,7 @@ int main(void)
 				do{
 						if(BPPS>=BrakeAct &&  rtd_start==1){
 								startTime=HAL_GetTick();
-								setBuzzer(200);
+								setBuzzer(50);
 								while(duration<ReadyTime &&   rtd_start==1){
 										duration = HAL_GetTick()-startTime;
 								}
@@ -406,8 +406,11 @@ static void MX_NVIC_Init(void)
   /* CAN1_RX0_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(CAN1_RX0_IRQn, 3, 0);
   HAL_NVIC_EnableIRQ(CAN1_RX0_IRQn);
+  /* EXTI4_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(EXTI4_IRQn, 1, 1);
+  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
   /* EXTI9_5_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 3, 0);
   HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 }
 
