@@ -98,6 +98,10 @@ void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(CS1_GPIO_Port, &GPIO_InitStruct);
 
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI4_IRQn, 1, 1);
+  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
+
 }
 
 /* USER CODE BEGIN 2 */
@@ -142,9 +146,8 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		if(HAL_GPIO_ReadPin(clear_fault_SW_GPIO_Port,clear_fault_SW_Pin)==GPIO_PIN_RESET){
 			clear_fault_io=1;
 		}else{
-			}
-			
-		}
+		}	
+	}
 }
 /* USER CODE END 2 */
 

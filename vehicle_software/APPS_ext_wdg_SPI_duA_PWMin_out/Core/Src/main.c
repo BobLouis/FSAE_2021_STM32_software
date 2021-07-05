@@ -397,9 +397,6 @@ static void MX_NVIC_Init(void)
   /* EXTI3_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(EXTI3_IRQn, 1, 0);
   HAL_NVIC_EnableIRQ(EXTI3_IRQn);
-  /* EXTI4_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(EXTI4_IRQn, 1, 1);
-  HAL_NVIC_EnableIRQ(EXTI4_IRQn);
   /* EXTI2_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(EXTI2_IRQn, 1, 2);
   HAL_NVIC_EnableIRQ(EXTI2_IRQn);
@@ -409,6 +406,9 @@ static void MX_NVIC_Init(void)
   /* CAN1_RX0_IRQn interrupt configuration */
   HAL_NVIC_SetPriority(CAN1_RX0_IRQn, 3, 0);
   HAL_NVIC_EnableIRQ(CAN1_RX0_IRQn);
+  /* EXTI9_5_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
 }
 
 /* USER CODE BEGIN 4 */
@@ -451,15 +451,13 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 	if(clear_fault_io){
 		HAL_CAN_AddTxMessage(&hcan1,&TxMessage_R_clear,TxData_clear,&TxMailbox);
 		HAL_CAN_AddTxMessage(&hcan1,&TxMessage_L_clear,TxData_clear,&TxMailbox);
-		clear_fault_io=0;
+		//clear_fault_io=1;
 	}
 	torque_to_can();
 	HAL_CAN_AddTxMessage(&hcan1,&TxMessage_right,TxData_R,&TxMailbox);
 	HAL_CAN_AddTxMessage(&hcan1,&TxMessage_left ,TxData_L,&TxMailbox);
 	HAL_IWDG_Refresh(&hiwdg);
-	HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_1);
-	
-	
+	HAL_GPIO_TogglePin(GPIOA,GPIO_PIN_1);    
 	
 }
 

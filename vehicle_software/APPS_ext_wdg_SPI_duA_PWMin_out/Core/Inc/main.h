@@ -69,6 +69,7 @@ void Error_Handler(void);
 #define precharge_SW_EXTI_IRQn EXTI4_IRQn
 #define clear_fault_SW_Pin GPIO_PIN_5
 #define clear_fault_SW_GPIO_Port GPIOE
+#define clear_fault_SW_EXTI_IRQn EXTI9_5_IRQn
 #define steer_Pin GPIO_PIN_0
 #define steer_GPIO_Port GPIOA
 #define APPSR_Pin GPIO_PIN_2
